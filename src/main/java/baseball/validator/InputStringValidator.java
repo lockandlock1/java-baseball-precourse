@@ -9,7 +9,7 @@ public class InputStringValidator {
     private static final String WRONG_INPUT_ERROR_MESSAGE = "잘못된 입력값 입니다";
     private static final int DIGIT = 3;
 
-    public static int valid(String input) {
+    public static String valid(String input) {
         Matcher matcher = onlyNumberPattern.matcher(input);
 
         if(matcher.find() && input.length() == DIGIT) {
@@ -19,14 +19,14 @@ public class InputStringValidator {
         throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
     }
 
-    private static int checkPositive(String input) {
+    private static String checkPositive(String input) {
         int number = Integer.parseInt(input);
 
         if(number < 0) {
             throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
         }
 
-        return number;
+        return input;
 
     }
 }
