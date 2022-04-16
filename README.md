@@ -5,3 +5,11 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록 
+* 컴퓨터의 정답 생성 기능 
+* UI 입출력 기능 
+* 잘못된 입력값 판별 기능 
+* 입력값에 대한 스트라이크, 볼, 낫싱 판별 기능 
+* 게임 진행 기능 
+* 게임 종료 기능
