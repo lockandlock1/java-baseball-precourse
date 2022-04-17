@@ -14,9 +14,16 @@ public class Utils {
         Set<Integer> numbers = new HashSet<>();
 
         int value = 0;
-        while (numbers.size() == size) {
-            if(numbers.add(value)) {
-                value += calculate(Randoms.pickNumberInRange(1, 9), size - numbers.size());
+
+        boolean isContinue = true;
+        while (isContinue) {
+            int randomNumber = Randoms.pickNumberInRange(1, 9);
+            if (numbers.add(randomNumber)) {
+                value += calculate(randomNumber, size - numbers.size());
+            }
+
+            if (numbers.size() == size) {
+                isContinue = false;
             }
         }
 
@@ -25,10 +32,9 @@ public class Utils {
     }
 
 
-
     private static int calculate(int number, int power) {
 
-        return  (int)Math.pow(DIGIT, power) * number;
+        return (int) Math.pow(DIGIT, power) * number;
     }
 
 
