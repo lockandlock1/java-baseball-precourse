@@ -1,14 +1,21 @@
 package baseball.controller;
 
+import baseball.model.BaseBallGameJudgment;
+import baseball.service.BaseBallGameService;
+
 public class BaseBallGameController {
 
-    private final String answer;
+    private final BaseBallGameService baseBallGameService = new BaseBallGameService();
 
-    public BaseBallGameController(String answer) {
-        this.answer = answer;
+    public String createAnswer() {
+        return baseBallGameService.createAnswer();
     }
 
-    private static void setBaseBallGameAnswer() {
+    public BaseBallGameJudgment requestJudge(String input, String answer) {
+        return baseBallGameService.requestJudge(input, answer);
+    }
 
+    public boolean requestGameProgress(BaseBallGameJudgment baseBallGameJudgment) {
+        return baseBallGameService.requestGameProgress(baseBallGameJudgment);
     }
 }

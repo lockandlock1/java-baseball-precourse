@@ -1,5 +1,9 @@
 package baseball.validator;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,24 +13,35 @@ public class InputStringValidator {
     private static final String WRONG_INPUT_ERROR_MESSAGE = "잘못된 입력값 입니다";
     private static final int DIGIT = 3;
 
-    public static String valid(String input) {
+    public static String valid(String input, int value) {
+        if(input.length() > value) {
+            throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
+        }
+
+
         Matcher matcher = onlyNumberPattern.matcher(input);
 
-        if(matcher.find() && input.length() == DIGIT) {
-            return checkPositive(input);
+        if(matcher.find()) {
+            return checkDifferentDigit(input);
         }
 
         throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
     }
 
-    private static String checkPositive(String input) {
-        int number = Integer.parseInt(input);
+    private static String checkDifferentDigit(String input) {
+        Set<Character> numbers = new HashSet<>();
 
-        if(number < 0) {
-            throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
+        for(int i = 0; i < DIGIT; i++) {
+            check(numbers, input.charAt(i));
         }
 
         return input;
-
     }
+
+    private static void check(Set<Character> numbers, char input) {
+        if(!numbers.add(input)) {
+            throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
+        }
+    }
+
 }
