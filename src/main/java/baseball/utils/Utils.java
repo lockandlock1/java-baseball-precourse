@@ -6,9 +6,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class Utils {
 
     private static final int DIGIT = 10;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 9;
 
     public static String answerNumberGenerate(int size) {
         Set<Integer> numbers = new HashSet<>();
@@ -17,7 +20,7 @@ public class Utils {
 
         boolean isContinue = true;
         while (isContinue) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
+            int randomNumber = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
             if (numbers.add(randomNumber)) {
                 value += calculate(randomNumber, size - numbers.size());
             }
