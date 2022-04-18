@@ -16,7 +16,7 @@ class UtilsTest {
     @Test
     @DisplayName("컴퓨터 정답 만들기 생성 문자 길이 테스트")
     void answerNumberGenerateLengthTest() {
-        String result = Utils.answerNumberGenerate(OUTPUT_LENGTH);
+        String result = Utils.generateAnswerNumber(OUTPUT_LENGTH);
         assertThat(result.length()).isEqualTo(OUTPUT_LENGTH);
         assertThat(Integer.parseInt(result)).isGreaterThanOrEqualTo(100).isLessThanOrEqualTo(999);
     }
@@ -24,7 +24,7 @@ class UtilsTest {
     @Test
     @DisplayName("컴퓨터 정답 만들기 생성 문자열 범위 테스트")
     void answerNumberGenerateRangeTest() {
-        String result = Utils.answerNumberGenerate(OUTPUT_LENGTH);
+        String result = Utils.generateAnswerNumber(OUTPUT_LENGTH);
 
         assertThat(Integer.parseInt(result)).isGreaterThanOrEqualTo(100).isLessThanOrEqualTo(999);
     }
@@ -32,7 +32,7 @@ class UtilsTest {
     @Test
     @DisplayName("컴퓨터 정답 만들기 생성 문자열 동일 문자 존재 여부 테스트")
     void answerNumberGenerateSameCharacterTest() {
-        String result = Utils.answerNumberGenerate(OUTPUT_LENGTH);
+        String result = Utils.generateAnswerNumber(OUTPUT_LENGTH);
 
         Set<Character> set = new HashSet<>();
 

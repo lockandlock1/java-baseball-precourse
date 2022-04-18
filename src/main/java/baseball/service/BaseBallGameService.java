@@ -9,7 +9,7 @@ public class BaseBallGameService {
 
 
     public String createAnswer() {
-        return Utils.answerNumberGenerate(STRING_LENGTH);
+        return Utils.generateAnswerNumber(STRING_LENGTH);
     }
 
     public BaseBallGameJudgment requestJudge(String input, String answer) {
@@ -17,23 +17,54 @@ public class BaseBallGameService {
     }
 
     private BaseBallGameJudgment judge(String input, String answer) {
-        int strikeCnt = 0;
-        int ballCnt = 0;
-        for (int i = 0; i < STRING_LENGTH; i++) {
-            for (int j = 0; j < STRING_LENGTH; j++) {
-                if ((input.charAt(i) == answer.charAt(j))) {
-                    if(i == j) {
-                        strikeCnt++;
-                        continue;
-                    }
 
-                    ballCnt++;
-                }
-            }
+        return new BaseBallGameJudgment(countStrike(input, answer), countBall(input, answer));
+    }
+
+    private int countStrike(String input, String answer) {
+        int strikeCnt = 0;
+        for (int inputIdx = 0; inputIdx < STRING_LENGTH; inputIdx++) {
+            strikeCnt += checkStrikeAnswer(input, answer, inputIdx);
         }
 
-        return new BaseBallGameJudgment(strikeCnt, ballCnt);
+        return strikeCnt;
     }
+
+    private int checkStrikeAnswer(String input, String answer, int inputIdx) {
+        int strikeCount = 0;
+        for (int answerIdx = 0; answerIdx < STRING_LENGTH; answerIdx++) {
+            strikeCount += checkStrike(input.charAt(inputIdx), answer.charAt(answerIdx), inputIdx, answerIdx);
+        }
+
+        return strikeCount;
+    }
+
+    private int checkStrike(char input, char answer, int inputIdx, int answerIdx) {
+        return input == answer && inputIdx == answerIdx ? 1 : 0;
+    }
+
+    private int countBall(String input, String answer) {
+        int ballCnt = 0;
+        for (int inputIdx = 0; inputIdx < STRING_LENGTH; inputIdx++) {
+            ballCnt += checkBallAnswer(input, answer, inputIdx);
+        }
+
+        return ballCnt;
+    }
+
+    private int checkBallAnswer(String input, String answer, int inputIdx) {
+        int ballCount = 0;
+        for (int answerIdx = 0; answerIdx < STRING_LENGTH; answerIdx++) {
+            ballCount += checkBall(input.charAt(inputIdx), answer.charAt(answerIdx), inputIdx, answerIdx);
+        }
+
+        return ballCount;
+    }
+
+    private int checkBall(char input, char answer, int inputIdx, int answerIdx) {
+        return input == answer && inputIdx != answerIdx ? 1 : 0;
+    }
+
 
     public boolean requestGameProgress(BaseBallGameJudgment baseBallGameJudgment) {
         return !(baseBallGameJudgment.getStrike() == STRING_LENGTH);
