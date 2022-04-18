@@ -14,7 +14,6 @@ class InputStringValidatorTest {
     @ParameterizedTest
     @DisplayName("입력값 내용 오류 기능 테스트")
     @ValueSource(strings = {"199", "*:!!", "23~", "-189", "222"})
-
     void validTest(String input) {
         assertThatThrownBy(() -> {
             InputStringValidator.valid(input, DIGIT);
