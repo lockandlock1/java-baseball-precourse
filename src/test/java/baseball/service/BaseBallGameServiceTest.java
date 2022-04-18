@@ -2,10 +2,8 @@ package baseball.service;
 
 import baseball.model.BaseBallGameJudgment;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,9 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BaseBallGameServiceTest {
 
-    BaseBallGameService baseBallGameService = new BaseBallGameService();
+    private static final BaseBallGameService baseBallGameService = new BaseBallGameService();
 
-    static final int INPUT_LENGTH = 3;
+    private static final int INPUT_LENGTH = 3;
 
 
     @DisplayName("컴퓨터 정답 생성 기능 테스트")
@@ -38,22 +36,23 @@ class BaseBallGameServiceTest {
 
     }
 
-    public void check(Set<Character> set, char value) {
+    private void check(Set<Character> set, char value) {
         if (!set.add(value)) {
             Assertions.fail("컴퓨터 정답 기능 오류");
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"321"})
-    void requestJudgeTest(String input) {
+    @DisplayName("야구 게임 판정 테스트")
+    @CsvSource(value = {"321, 1, 0", "347, 2, 0", "231, 0, 1", "431, 0, 2", "127, 0 ,0"})
+    void requestJudgeTest(String input, int strikeCount, int ballCount) {
         String answer = "345";
 
         BaseBallGameJudgment result = baseBallGameService.requestJudge(input, answer);
 
 
-        assertThat(result.getStrike()).isEqualTo(1);
-        assertThat(result.getBall()).isEqualTo(0);
+        assertThat(result.getStrike()).isEqualTo(strikeCount);
+        assertThat(result.getBall()).isEqualTo(ballCount);
     }
 
 

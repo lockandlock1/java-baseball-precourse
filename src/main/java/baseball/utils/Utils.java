@@ -30,7 +30,6 @@ public class Utils {
     }
 
     private static int calculate(int number, int power) {
-
         return (int) Math.pow(DIGIT, power) * number;
     }
 
