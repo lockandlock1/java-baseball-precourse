@@ -21,12 +21,8 @@ public class ResultView {
             return;
         }
 
-
         makeStrikeSentence(strikeCount,
                 makeBallSentence(baseBallGameJudgment.getBall()));
-
-
-
     }
 
     private static String makeBallSentence(int ballCount) {

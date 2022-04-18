@@ -7,7 +7,6 @@ public class BaseBallGameService {
 
     private final int STRING_LENGTH = 3;
 
-
     public String createAnswer() {
         return Utils.generateAnswerNumber(STRING_LENGTH);
     }

@@ -17,9 +17,6 @@ public class Application {
 
             isProgramContinue = InputView.enterGameContinuity();
         }
-
-
-
     }
 
     private static void startGame(BaseBallGameController baseBallGameController, String answer) {

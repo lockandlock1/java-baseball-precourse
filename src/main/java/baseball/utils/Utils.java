@@ -17,7 +17,6 @@ public class Utils {
         Set<Integer> numbers = checkDuplicate(size);
 
         return Integer.toString(generateNumber(numbers));
-
     }
 
     private static Set<Integer> checkDuplicate(int size) {
