@@ -11,7 +11,9 @@ public class Application {
 
         boolean isProgramContinue = true;
         while (isProgramContinue) {
-            startGame(baseBallGameController, baseBallGameController.createAnswer());
+            String answer = baseBallGameController.createAnswer();
+
+            startGame(baseBallGameController, answer);
 
             isProgramContinue = InputView.enterGameContinuity();
         }

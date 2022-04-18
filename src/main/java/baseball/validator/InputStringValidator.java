@@ -10,10 +10,9 @@ public class InputStringValidator {
 
     private static final Pattern onlyNumberPattern = Pattern.compile("^[0-9]*?");
     private static final String WRONG_INPUT_ERROR_MESSAGE = "잘못된 입력값 입니다";
-    private static final int DIGIT = 3;
 
     public static String valid(String input, int value) {
-        if(input.length() > value) {
+        if(input.length() != value) {
             throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
         }
 
@@ -21,16 +20,16 @@ public class InputStringValidator {
         Matcher matcher = onlyNumberPattern.matcher(input);
 
         if(matcher.find()) {
-            return checkDifferentDigit(input);
+            return checkDifferentDigit(input, value);
         }
 
         throw new IllegalArgumentException(WRONG_INPUT_ERROR_MESSAGE);
     }
 
-    private static String checkDifferentDigit(String input) {
+    private static String checkDifferentDigit(String input, int digit) {
         Set<Character> numbers = new HashSet<>();
 
-        for(int i = 0; i < DIGIT; i++) {
+        for(int i = 0; i < digit; i++) {
             check(numbers, input.charAt(i));
         }
 
