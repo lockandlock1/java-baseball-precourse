@@ -22,20 +22,20 @@ public class Utils {
                 value += calculate(randomNumber, size - numbers.size());
             }
 
-            if (numbers.size() == size) {
-                isContinue = false;
-            }
+            isContinue = checkContinue(numbers.size(), size);
         }
 
         return Integer.toString(value);
 
     }
 
-
     private static int calculate(int number, int power) {
 
         return (int) Math.pow(DIGIT, power) * number;
     }
 
+    private static boolean checkContinue(int size, int numberLength) {
+        return !(size == numberLength);
+    }
 
 }

@@ -1,6 +1,5 @@
 package baseball.validator;
 
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.HashSet;
 import java.util.Set;
